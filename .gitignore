@@ -2,3 +2,4 @@ src/composer.json
 .idea
 vendor
 data
+src/conf

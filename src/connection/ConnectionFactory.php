@@ -1,6 +1,6 @@
 <?php
 
-namespace iutnc\hellokant\Connection;
+namespace iutnc\hellokant\connection;
 use PDO;
 use PDOException;
 
@@ -17,26 +17,18 @@ class ConnectionFactory {
             PDO::ATTR_STRINGIFY_FETCHES => false,
         ];
 
-        try{
+        try {
             self::$connection = new PDO($db, $conf['user'], $conf['password'], $options);
-        }
-        catch (PDOException $e) {
-            echo "Erreur de connexion : " . $e->getMessage();
+        } catch (PDOException $e) {
+            throw new PDOException("Erreur de connexion : " . $e->getMessage());
         }
 
         return self::$connection;
     }
 
-    //getConnection() : permet d'obtenir une connexion à condition qu'elle ait été créée
-    //auparavant. Cette méthode retourne le contenu de la variable statique, et s'utilise chaque fois
-    //que cela est nécessaire d'exécuter une requête sur la base de données – par exemple la la
-    //classe Query
-
     public static function getConnection() : PDO {
-
         if (self::$connection === null) {
-            echo "Erreur : connexion non établie";
-            exit();
+            throw new PDOException("Erreur : connexion non établie");
         }
 
         return self::$connection;

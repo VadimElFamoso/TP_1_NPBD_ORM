@@ -1,6 +1,6 @@
 <?php
 
-namespace \iutnc\hellokant\query;
+namespace iutnc\hellokant\query;
 use iutnc\hellokant\Connection\ConnectionFactory;
 class Query {
 

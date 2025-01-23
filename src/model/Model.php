@@ -1,6 +1,7 @@
 <?php
 
 namespace iutnc\hellokant\model;
+use iutnc\hellokant\query\Query;
 
 use Exception;
 
@@ -22,6 +23,16 @@ class Model{
 
     public function __set($name, $value){
         $this->data[$name] = $value;
+    }
+
+    public function save(): void
+    {
+        $query = Query::table(static::$table);
+        if (isset($this->data['id'])) {
+            $query->where('id', '=', $this->data['id'])->update($this->data);
+        } else {
+            $this->data['id'] = $query->insert($this->data);
+        }
     }
 
     public function delete(): void

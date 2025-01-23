@@ -1,8 +1,13 @@
 <?php
 
-namespace \iutnc\hellokant\Article;
+namespace iutnc\hellokant\model;
 
-class Article extends Model {
-    protected $table = 'articles';
-    protected $fillable = ['title', 'content', 'author_id'];
+
+class Article extends model {
+    protected static string $table = 'article';
+    private array $data;
+
+    public function __construct(?array $data = null){
+        $this->data = $data ?? [];
+    }
 }
