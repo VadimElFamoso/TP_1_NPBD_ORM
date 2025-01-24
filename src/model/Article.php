@@ -10,4 +10,8 @@ class Article extends model {
     public function __construct(?array $data = null){
         $this->data = $data ?? [];
     }
+    public function categorie(): Model
+    {
+        return $this->belongs_to(Categorie::class, 'id_categ');
+    }
 }
